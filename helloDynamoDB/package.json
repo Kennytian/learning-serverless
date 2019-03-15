@@ -2,7 +2,7 @@
   "name": "helloDynamoDB",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
-  "main": "handler.js",
+  "main": "src/handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "invoke-local": "sls invoke local -f hello",
