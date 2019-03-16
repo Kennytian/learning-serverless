@@ -4,10 +4,12 @@
   "description": "Serverless webpack example using Typescript",
   "main": "src/handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "invoke-local": "sls invoke local -f hello",
+    "deploy-online": "sls deploy -v",
     "deploy-offline": "sls offline --useSeparateProcesses",
-    "dynamodb-local": "java -Djava.library.path=~/Downloads/dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000"
+    "dynamodb-local": "java -Djava.library.path=~/Downloads/dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000",
+    "invoke-local": "sls invoke local -f hello",
+    "lint": "tslint 'src/*.ts'",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "aws-sdk": "^2.422.0",
@@ -20,9 +22,14 @@
     "serverless-offline": "^4.9.1",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
+    "tslint": "^5.14.0",
+    "tslint-config-standard": "^8.0.1",
     "typescript": "^3.2.4",
     "webpack": "^4.29.0"
   },
-  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "author": {
+    "name": "Kenny Tian",
+    "email": "kenny_tian@outlook.com"
+  },
   "license": "MIT"
 }
