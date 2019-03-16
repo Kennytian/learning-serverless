@@ -2,9 +2,10 @@
   "name": "helloDynamoDB",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
-  "main": "src/handler.js",
+  "main": "handler.js",
   "scripts": {
     "deploy-online": "sls deploy -v",
+    "deploy-debug": "SLS_DEBUG=t STAGE=test sls deploy",
     "deploy-offline": "sls offline --useSeparateProcesses",
     "dynamodb-local": "java -Djava.library.path=~/Downloads/dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000",
     "invoke-local": "sls invoke local -f hello",

@@ -13,8 +13,15 @@ provider:
 
 functions:
   hello:
-    handler: src/handler.hello
+    handler: handler.hello
     events:
       - http:
           method: get
           path: hello
+  createTable:
+    handler: src/table.create # table.ts 文件放到 src 里了，所以要加 src
+    events:
+      - http:
+          method: get
+          path: create
+
