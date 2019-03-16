@@ -6,13 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "invoke-local": "sls invoke local -f hello",
-    "deploy-offline": "sls offline --useSeparateProcesses"
+    "deploy-offline": "sls offline --useSeparateProcesses",
+    "dynamodb-local": "java -Djava.library.path=~/Downloads/dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000"
   },
   "dependencies": {
+    "aws-sdk": "^2.422.0",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
+    "@types/aws-sdk": "^2.7.0",
     "@types/node": "^10.12.18",
     "serverless-offline": "^4.9.1",
     "serverless-webpack": "^5.2.0",
