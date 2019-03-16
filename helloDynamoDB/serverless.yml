@@ -3,7 +3,7 @@ service:
 
 plugins:
   - serverless-webpack
-  - serverless-offline
+  - serverless-offline # 用于离线调试
 
 provider:
   name: aws
@@ -19,9 +19,9 @@ functions:
           method: get
           path: hello
   createTable:
-    handler: src/table.create # table.ts 文件放到 src 里了，所以要加 src
+    # table.ts 文件放到 src 里了，所以要加 src
+    handler: src/table.create
     events:
       - http:
           method: get
           path: create
-

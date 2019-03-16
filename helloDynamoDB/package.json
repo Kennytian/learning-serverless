@@ -7,7 +7,7 @@
     "deploy-online": "sls deploy -v",
     "deploy-debug": "SLS_DEBUG=t STAGE=test sls deploy",
     "deploy-offline": "sls offline --useSeparateProcesses",
-    "dynamodb-local": "java -Djava.library.path=~/Downloads/dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000",
+    "dynamodb-local": "java -Djava.library.path=./dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8484",
     "invoke-local": "sls invoke local -f hello",
     "lint": "tslint 'src/*.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
