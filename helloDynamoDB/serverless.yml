@@ -33,3 +33,11 @@ functions:
       - http:
           method: get
           path: drop
+
+  # 导入JSON 数据至本地数据表里
+  importData:
+    handler: src/table.importData
+    events:
+      - http:
+          method: get
+          path: import

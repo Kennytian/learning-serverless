@@ -1,10 +1,15 @@
 import { DynamoDB } from "aws-sdk";
 
-const getDynamoClient = (event, port = 8000) => {
+export const dynamoDBClient = (event, port = 8000, region = 'localhost') => {
   if ("isOffline" in event && event.isOffline) {
-    return new DynamoDB({ endpoint: `http://localhost:${port}` });
+    return new DynamoDB({ endpoint: `http://localhost:${port}`, region });
   }
   return new DynamoDB();
 };
 
-export default getDynamoClient;
+export const dynamoDBDocumentClient = (event, port = 8000, region = 'localhost') => {
+  if ("isOffline" in event && event.isOffline) {
+    return new DynamoDB.DocumentClient({ endpoint: `http://localhost:${port}`, region });
+  }
+  return new DynamoDB.DocumentClient();
+};
