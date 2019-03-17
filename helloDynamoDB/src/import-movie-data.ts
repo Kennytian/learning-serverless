@@ -1,4 +1,4 @@
-const AWS = require("aws-sdk");
+const AWS = require('aws-sdk');
 const fs = require('fs');
 
 const importData = () => {
@@ -13,7 +13,7 @@ const importData = () => {
   }
   try {
     const allMovies = JSON.parse(dataContent);
-    allMovies.forEach(async (movie) => {
+    allMovies.forEach(async movie => {
       const params = {
         TableName: 'Movies',
         Item: {

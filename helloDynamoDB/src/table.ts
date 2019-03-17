@@ -1,10 +1,10 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
 import 'source-map-support/register';
-import { dynamoDBClient, dynamoDBDocumentClient } from "./dynamo-client";
-import { createTable, dropTable } from "./models/movie";
+import { dynamoDBClient, dynamoDBDocumentClient } from './dynamo-client';
+import { createTable, dropTable } from './models/movie';
 
-export const create: APIGatewayProxyHandler = async (event) => {
+export const create: APIGatewayProxyHandler = async event => {
   const dynamodb = dynamoDBClient(event);
   try {
     const { TableDescription = {} } = await dynamodb.createTable(createTable).promise();
@@ -14,7 +14,7 @@ export const create: APIGatewayProxyHandler = async (event) => {
   }
 };
 
-export const drop: APIGatewayProxyHandler = async (event) => {
+export const drop: APIGatewayProxyHandler = async event => {
   const dynamodb = dynamoDBClient(event);
   try {
     const { TableDescription = {} } = await dynamodb.deleteTable(dropTable).promise();
@@ -24,20 +24,16 @@ export const drop: APIGatewayProxyHandler = async (event) => {
   }
 };
 
-export const importData: APIGatewayProxyHandler = async (event) => {
-  const dynamoDBDoc = dynamoDBDocumentClient(event);
+export const importData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
   try {
-    const allMovies = JSON.parse( readFileSync('movie.json', 'utf-8'));
-    allMovies.forEach(async (movie) => {
+    const allMovies = JSON.parse(readFileSync('movie.json', 'utf-8'));
+    allMovies.forEach(async movie => {
       const params = {
         TableName: 'Movies',
-        Item: {
-          year: movie.year,
-          title: movie.title,
-          info: movie.info,
-        },
+        Item: { year: movie.year, title: movie.title, info: movie.info },
       };
-      await dynamoDBDoc.put(params).promise();
+      await dynamodbDoc.put(params).promise();
     });
     return {
       body: JSON.stringify({
@@ -62,7 +58,7 @@ const getCorrectBody = (TableDescription, action) => {
   };
 };
 
-const getExceptionBody = (e) => {
+const getExceptionBody = e => {
   return {
     body: JSON.stringify(e),
     statusCode: 500,
