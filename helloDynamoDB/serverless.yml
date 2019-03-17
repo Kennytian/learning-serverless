@@ -18,6 +18,7 @@ functions:
       - http:
           method: get
           path: hello
+  # 创建表
   createTable:
     # table.ts 文件放到 src 里了，所以要加 src
     handler: src/table.create
@@ -25,3 +26,10 @@ functions:
       - http:
           method: get
           path: create
+  # 删除表
+  dropTable:
+    handler: src/table.drop
+    events:
+      - http:
+          method: get
+          path: drop

@@ -1,4 +1,4 @@
-export const modelsMovie = {
+export const createTable = {
   AttributeDefinitions: [ // 主键数据类型
     { AttributeName: "year", AttributeType: "N" }, // N Number
     { AttributeName: "title", AttributeType: "S" },   // S String
@@ -12,4 +12,8 @@ export const modelsMovie = {
     WriteCapacityUnits: 20,
   },
   TableName: "Movies", // 表名
+};
+
+export const dropTable = {
+  TableName: 'Movies',
 };
