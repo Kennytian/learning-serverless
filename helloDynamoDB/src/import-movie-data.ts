@@ -1,8 +1,8 @@
-const AWS = require('aws-sdk');
+const { DynamoDB } = require('aws-sdk');
 const fs = require('fs');
 
 const importData = () => {
-  const dynamoDBDoc = new AWS.DynamoDB.DocumentClient({
+  const dynamoDBDoc = new DynamoDB.DocumentClient({
     region: 'localhost',
     endpoint: `http://localhost:8000`,
   });

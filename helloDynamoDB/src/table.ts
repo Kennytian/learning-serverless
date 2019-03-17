@@ -4,6 +4,25 @@ import 'source-map-support/register';
 import { dynamoDBClient, dynamoDBDocumentClient } from './dynamo-client';
 import { createTable, dropTable } from './models/movie';
 
+const getCorrectBody = (TableDescription, action) => {
+  return {
+    body: JSON.stringify({
+      creationDateTime: TableDescription.CreationDateTime,
+      tableStatus: TableDescription.TableStatus,
+      tableName: TableDescription.TableName,
+      message: `Table ${action} successfully!`,
+    }),
+    statusCode: 200,
+  };
+};
+
+const getExceptionBody = e => {
+  return {
+    body: JSON.stringify(e),
+    statusCode: 500,
+  };
+};
+
 export const create: APIGatewayProxyHandler = async event => {
   const dynamodb = dynamoDBClient(event);
   try {
@@ -26,11 +45,12 @@ export const drop: APIGatewayProxyHandler = async event => {
 
 export const importData: APIGatewayProxyHandler = async event => {
   const dynamodbDoc = dynamoDBDocumentClient(event);
+  const table = 'Movies';
   try {
     const allMovies = JSON.parse(readFileSync('movie.json', 'utf-8'));
     allMovies.forEach(async movie => {
       const params = {
-        TableName: 'Movies',
+        TableName: table,
         Item: { year: movie.year, title: movie.title, info: movie.info },
       };
       await dynamodbDoc.put(params).promise();
@@ -46,21 +66,16 @@ export const importData: APIGatewayProxyHandler = async event => {
   }
 };
 
-const getCorrectBody = (TableDescription, action) => {
-  return {
-    body: JSON.stringify({
-      creationDateTime: TableDescription.CreationDateTime,
-      tableStatus: TableDescription.TableStatus,
-      tableName: TableDescription.TableName,
-      message: `Table ${action} successfully!`,
-    }),
-    statusCode: 200,
-  };
-};
-
-const getExceptionBody = e => {
-  return {
-    body: JSON.stringify(e),
-    statusCode: 500,
-  };
+export const getData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  const params = { TableName: 'Movies', Key: { year: 2013, title: 'Rush' } };
+  try {
+    const result = await dynamodbDoc.get(params).promise();
+    return {
+      body: JSON.stringify(result),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
 };

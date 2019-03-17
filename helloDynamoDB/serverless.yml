@@ -41,3 +41,10 @@ functions:
       - http:
           method: get
           path: import
+  # 查询数据
+  getData:
+    handler: src/table.getData
+    events:
+      - http:
+          method: get
+          path: get
