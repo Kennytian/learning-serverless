@@ -9,3 +9,4 @@ jspm_packages
 .webpack
 
 .idea/
+.DS_Store
