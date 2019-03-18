@@ -33,7 +33,6 @@ functions:
       - http:
           method: get
           path: drop
-
   # 导入JSON 数据至本地数据表里
   importData:
     handler: src/table.importData
@@ -48,3 +47,17 @@ functions:
       - http:
           method: get
           path: get
+  # 写入数据
+  saveData:
+    handler: src/table.saveData
+    events:
+      - http:
+          method: get
+          path: save
+  # 更新数据
+  updateData:
+    handler: src/table.updateData
+    events:
+      - http:
+          method: get
+          path: update
