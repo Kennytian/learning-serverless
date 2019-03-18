@@ -113,12 +113,78 @@ export const updateData: APIGatewayProxyHandler = async event => {
     ExpressionAttributeValues: {
       ':r': 5.5,
       ':p': 'Everything happens all at once.',
-      ':a': ['Larry', 'Moe', 'Curly']
+      ':a': ['Larry', 'Moe', 'Curly'],
     },
-    ReturnValues: 'UPDATE_NEW',
+    // ReturnValues 有如下几种：NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW
+    ReturnValues: 'UPDATED_NEW',
   };
   try {
     const result = await dynamodbDoc.update(params).promise();
+    return {
+      body: JSON.stringify(result),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
+
+// 每次请求这个接口，就将这条记录的 info.rating 值加 1
+export const updateStepData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  const params = {
+    TableName: 'Movies',
+    Key: { year: 1940, title: 'Fantasia' },
+    UpdateExpression: 'set info.rating = info.rating + :value',
+    ExpressionAttributeValues: { ':value': 1 },
+    ReturnValues: 'UPDATED_NEW',
+  };
+  try {
+    const result = await dynamodbDoc.update(params).promise();
+    return {
+      body: JSON.stringify(result),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
+
+// 根据条件更新
+export const updateDataByConditional: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  const params = {
+    TableName: 'Movies',
+    Key: { year: 2015, title: 'The Big New Movie' },
+    // 删除第 0 位演员（只删除字段里的某个属性）
+    UpdateExpression: 'remove info.actors[0]',
+    // 演员数大于等于 3 位时
+    ConditionExpression: 'size(info.actors) >= :num',
+    ExpressionAttributeValues: { ':num': 3 },
+    ReturnValues: 'UPDATED_NEW',
+  };
+  try {
+    const result = await dynamodbDoc.update(params).promise();
+    return {
+      body: JSON.stringify(result),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
+
+// 删除数据
+export const deleteData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  const params = {
+    TableName: 'Movies',
+    Key: { year: 2015, title: 'The Big New Movie' },
+    ConditionExpression: 'info.rating >= :value',
+    ExpressionAttributeValues: { ':value': 5.0 },
+  };
+  try {
+    const result = await dynamodbDoc.delete(params).promise();
     return {
       body: JSON.stringify(result),
       statusCode: 200,

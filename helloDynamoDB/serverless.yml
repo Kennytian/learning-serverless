@@ -61,3 +61,24 @@ functions:
       - http:
           method: get
           path: update
+  # 加 1 更新数据
+  updateStepData:
+    handler: src/table.updateStepData
+    events:
+      - http:
+          method: get
+          path: update-step
+  # 根据条件更新数据
+  updateDataByConditional:
+    handler: src/table.updateDataByConditional
+    events:
+      - http:
+          method: get
+          path: update-condi
+  # 根据条件删除数据
+  deleteData:
+    handler: src/table.deleteData
+    events:
+      - http:
+          method: get
+          path: delete
