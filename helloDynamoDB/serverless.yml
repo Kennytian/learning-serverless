@@ -18,6 +18,7 @@ functions:
       - http:
           method: get
           path: hello
+
   # 创建表
   createTable:
     # table.ts 文件放到 src 里了，所以要加 src
@@ -26,6 +27,7 @@ functions:
       - http:
           method: get
           path: create
+
   # 删除表
   dropTable:
     handler: src/table.drop
@@ -33,6 +35,7 @@ functions:
       - http:
           method: get
           path: drop
+
   # 导入JSON 数据至本地数据表里
   importData:
     handler: src/table.importData
@@ -40,6 +43,7 @@ functions:
       - http:
           method: get
           path: import
+
   # 查询数据
   getData:
     handler: src/table.getData
@@ -47,6 +51,7 @@ functions:
       - http:
           method: get
           path: get
+
   # 写入数据
   saveData:
     handler: src/table.saveData
@@ -54,6 +59,7 @@ functions:
       - http:
           method: get
           path: save
+
   # 更新数据
   updateData:
     handler: src/table.updateData
@@ -61,6 +67,7 @@ functions:
       - http:
           method: get
           path: update
+
   # 加 1 更新数据
   updateStepData:
     handler: src/table.updateStepData
@@ -68,6 +75,7 @@ functions:
       - http:
           method: get
           path: update-step
+
   # 根据条件更新数据
   updateDataByConditional:
     handler: src/table.updateDataByConditional
@@ -75,6 +83,7 @@ functions:
       - http:
           method: get
           path: update-condi
+
   # 根据条件删除数据
   deleteData:
     handler: src/table.deleteData
@@ -82,3 +91,27 @@ functions:
       - http:
           method: get
           path: delete
+
+  # 根据条件查询数据
+  queryData:
+    handler: src/table.queryData
+    events:
+      - http:
+          method: get
+          path: query
+
+  # 根据条件查询数据
+  queryDataByConditional:
+    handler: src/table.queryDataByConditional
+    events:
+      - http:
+          method: get
+          path: query-condi
+
+  # 根据条件扫描数据
+  scanData:
+    handler: src/table.scanData
+    events:
+      - http:
+          method: get
+          path: scan

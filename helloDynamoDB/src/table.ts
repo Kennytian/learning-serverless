@@ -193,3 +193,89 @@ export const deleteData: APIGatewayProxyHandler = async event => {
     return getExceptionBody(e);
   }
 };
+
+// 根据条件查询数据
+export const queryData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  let defaultYear = 1983;
+  const { queryStringParameters = {} } = event;
+  if (queryStringParameters) {
+    const { year = '1984' } = queryStringParameters;
+    defaultYear = Number.parseInt(year, 10);
+  }
+  const params = {
+    TableName: 'Movies',
+    KeyConditionExpression: '#year=:yyyy',
+    ExpressionAttributeNames: { '#year': 'year' },
+    ExpressionAttributeValues: { ':yyyy': defaultYear },
+  };
+  try {
+    const result = await dynamodbDoc.query(params).promise();
+    return {
+      body: JSON.stringify({ code: 200, data: result.Items }),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
+
+// 根据多个条件查询数据
+export const queryDataByConditional: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  let defaultYear = 1983;
+  const { queryStringParameters = {} } = event;
+  if (queryStringParameters) {
+    const { year = '1984' } = queryStringParameters;
+    defaultYear = Number.parseInt(year, 10);
+  }
+  const params = {
+    TableName: 'Movies',
+    // 只查询如下 4 个「字段」
+    ProjectionExpression: '#year, title, info.genres, info.actors[0]',
+    // 键条件表达式
+    KeyConditionExpression: '#year = :yyyy and title between :letter1 and :letter2',
+    ExpressionAttributeNames: { '#year': 'year' },
+    ExpressionAttributeValues: { ':yyyy': defaultYear, ':letter1': 'C', ':letter2': 'K' },
+  };
+  try {
+    const result = await dynamodbDoc.query(params).promise();
+    return {
+      body: JSON.stringify({ code: 200, data: result.Items }),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
+
+// 根据多个条件查询数据，如：http://localhost:3000/scan?start=1980&end=1989
+export const scanData: APIGatewayProxyHandler = async event => {
+  const dynamodbDoc = dynamoDBDocumentClient(event);
+  let startYear = 1983;
+  let endYear = 1986;
+  const { queryStringParameters = {} } = event;
+  if (queryStringParameters) {
+    const { start = '1983', end = '1986' } = queryStringParameters;
+    startYear = Number.parseInt(start, 10);
+    endYear = Number.parseInt(end, 10);
+  }
+  const params = {
+    TableName: 'Movies',
+    // 只查询如下 3 个「字段」
+    ProjectionExpression: '#year, title, info.rating',
+    // 过虑器表达式
+    FilterExpression: '#year between :start and :end',
+    ExpressionAttributeNames: { '#year': 'year' },
+    ExpressionAttributeValues: { ':start': startYear, ':end': endYear },
+  };
+  try {
+    const result = await dynamodbDoc.scan(params).promise();
+    return {
+      body: JSON.stringify({ code: 200, data: result.Items }),
+      statusCode: 200,
+    };
+  } catch (e) {
+    return getExceptionBody(e);
+  }
+};
