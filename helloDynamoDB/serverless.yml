@@ -1,13 +1,15 @@
 service:
   name: helloDynamoDB
 
-# Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
+  - serverless-offline # 用于离线调试
 
 provider:
   name: aws
   runtime: nodejs8.10
+  stage: dev
+  region: ap-northeast-2
 
 functions:
   hello:
@@ -16,3 +18,100 @@ functions:
       - http:
           method: get
           path: hello
+
+  # 创建表
+  createTable:
+    # table.ts 文件放到 src 里了，所以要加 src
+    handler: src/table.create
+    events:
+      - http:
+          method: get
+          path: create
+
+  # 删除表
+  dropTable:
+    handler: src/table.drop
+    events:
+      - http:
+          method: get
+          path: drop
+
+  # 导入JSON 数据至本地数据表里
+  importData:
+    handler: src/table.importData
+    events:
+      - http:
+          method: get
+          path: import
+
+  # 查询数据
+  getData:
+    handler: src/table.getData
+    events:
+      - http:
+          method: get
+          path: get
+
+  # 写入数据
+  saveData:
+    handler: src/table.saveData
+    events:
+      - http:
+          method: get
+          path: save
+
+  # 更新数据
+  updateData:
+    handler: src/table.updateData
+    events:
+      - http:
+          method: get
+          path: update
+
+  # 加 1 更新数据
+  updateStepData:
+    handler: src/table.updateStepData
+    events:
+      - http:
+          method: get
+          path: update-step
+
+  # 根据条件更新数据
+  updateDataByConditional:
+    handler: src/table.updateDataByConditional
+    events:
+      - http:
+          method: get
+          path: update-condi
+
+  # 根据条件删除数据
+  deleteData:
+    handler: src/table.deleteData
+    events:
+      - http:
+          method: get
+          path: delete
+
+  # 根据条件查询数据
+  queryData:
+    handler: src/table.queryData
+    events:
+      - http:
+          method: get
+          path: query
+
+  # 根据条件查询数据
+  queryDataByConditional:
+    handler: src/table.queryDataByConditional
+    events:
+      - http:
+          method: get
+          path: query-condi
+
+  # 根据条件扫描数据
+  scanData:
+    handler: src/table.scanData
+    events:
+      - http:
+          method: get
+          path: scan
