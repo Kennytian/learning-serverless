@@ -10,7 +10,7 @@ export const createTable = {
     { AttributeName: 'title', KeyType: 'RANGE' }, // Sort key 排序键
   ],
   ProvisionedThroughput: {
-    // DynamoDB 吞吐量配置
+    // DynamoDB 预分配的吞吐量
     ReadCapacityUnits: 20,
     WriteCapacityUnits: 20,
   },
