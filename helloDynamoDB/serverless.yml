@@ -14,8 +14,18 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:*
-      Resource: "*"
+# 细分权限
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:ap-northeast-2:*"
+# 所有权限
+#        - dynamodb:*
+#      Resource: "*"
 
 functions:
   hello:
@@ -49,6 +59,7 @@ functions:
       - http:
           method: get
           path: import
+          async: true
 
   # 查询数据
   getData:
