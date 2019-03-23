@@ -92,7 +92,7 @@ export const saveData: APIGatewayProxyHandler = async event => {
 
 export const getData: APIGatewayProxyHandler = async event => {
   const dynamodbDoc = dynamoDBDocumentClient(event);
-  const params = { TableName: 'Movies', Key: { year: 2013, title: 'Rush' } };
+  const params = { TableName: 'Movies', Key: { year: 2015, title: 'The Big New Movie' } };
   try {
     const result = await dynamodbDoc.get(params).promise();
     return {
