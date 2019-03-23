@@ -10,6 +10,12 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: ap-northeast-2
+  # 项目权限
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: "*"
 
 functions:
   hello:
