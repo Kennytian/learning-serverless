@@ -7,19 +7,19 @@
     "deploy-online": "sls deploy -v",
     "deploy-debug": "SLS_DEBUG=t STAGE=test sls deploy",
     "deploy-offline": "sls offline --useSeparateProcesses",
-    "dynamodb-local": "java -Djava.library.path=./dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8484",
+    "dynamodb-local": "java -Djava.library.path=./dynamodb_local_latest/DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb --port 8000",
     "invoke-local": "sls invoke local -f hello",
     "lint": "node_modules/.bin/eslint --ext .ts ./src --fix --cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "aws-sdk": "^2.427.0",
+    "aws-sdk": "^2.428.0",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
     "@types/aws-sdk": "^2.7.0",
-    "@types/node": "^11.11.6",
+    "@types/node": "^11.11.8",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
     "eslint": "^5.15.3",

@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import { readFileSync } from 'fs';
 import 'source-map-support/register';
-import { dynamoDBClient, dynamoDBDocumentClient } from './dynamo-client';
+import { dynamoDBClient, dynamoDBDocumentClient } from './utils/dynamo-client';
 import { createTable, dropTable } from './models/movie';
 
 const getCorrectBody = (TableDescription, action) => {
