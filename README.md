@@ -1,3 +1,5 @@
+<a href="https://github.com/996icu/996.ICU/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg"></a>
+
 # learning-serverless
 - [x] Serverless 入门（一） - 创建 IAM https://www.jianshu.com/p/9fb731a799e2
 - [x] Serverless 入门（二） - HelloWord https://www.jianshu.com/p/ddf2ffda5f63
