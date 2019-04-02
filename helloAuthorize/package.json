@@ -12,14 +12,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "source-map-support": "^0.5.10",
-    "jsonwebtoken": "^8.5.1",
-    "jwk-to-pem": "^2.0.1",
-    "request": "^2.88.0"
+    "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
-    "@types/node": "^11.11.6",
+    "@types/node": "^11.13.0",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
     "eslint": "^5.15.3",
@@ -36,5 +33,5 @@
     "name": "Kenny Tian",
     "email": "kenny_tian@outlook.com"
   },
-  "license": "https://github.com/996icu/996.ICU/blob/master/LICENSE"
+  "license": "Anti 996"
 }
