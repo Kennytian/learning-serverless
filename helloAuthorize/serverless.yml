@@ -20,11 +20,17 @@ functions:
           method: get
           path: hello
   login:
-    handler: src/login.login
+    handler: src/auth.login
     events:
       - http:
           method: post
           path: login
+  refresh:
+    handler: src/auth.refresh
+    events:
+      - http:
+          method: post
+          path: refresh-token
   userInfo:
     handler: src/user-info.useInfo
     events:
