@@ -19,3 +19,15 @@ functions:
       - http:
           method: get
           path: hello
+  login:
+    handler: src/login.login
+    events:
+      - http:
+          method: post
+          path: login
+  userInfo:
+    handler: src/user-info.useInfo
+    events:
+      - http:
+          method: post
+          path: user-info

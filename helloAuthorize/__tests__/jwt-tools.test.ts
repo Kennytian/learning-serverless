@@ -1,4 +1,4 @@
-import { jwtSign, jwtVerify } from '../jwt-tools';
+import { jwtSign, jwtVerify } from '../src/jwt-tools';
 
 describe('jwt tools', () => {
   it('test jwtSign', () => {
