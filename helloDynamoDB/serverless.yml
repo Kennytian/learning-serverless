@@ -132,3 +132,12 @@ functions:
       - http:
           method: get
           path: scan
+#--------------------------------------------
+  # zlxg iap
+  # 写入订单
+  saveOrder:
+    handler: src/zlxg/index.saveOrder
+    events:
+      - http:
+          method: post
+          path: zlxg/save-order
