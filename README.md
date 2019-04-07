@@ -1,4 +1,7 @@
-# learning-serverless
+# Learning Serverless from here
+
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
 - [x] Serverless 入门（一） - 创建 IAM https://www.jianshu.com/p/9fb731a799e2
 - [x] Serverless 入门（二） - HelloWord https://www.jianshu.com/p/ddf2ffda5f63
 - [x] Serverless 入门（三）- 初始项目解读 https://www.jianshu.com/p/8baba2a8fe9f
