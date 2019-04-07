@@ -4,7 +4,7 @@
 
 Serverless 的权限设计跟 Node.js 项目权限大同小异，比如：AWS 的 Cognito，OAuth2、Cookies 和今天主要讲的 JWT。
 
-JTW 是 `JSON Web Token` 缩写，详细解释请见 [JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+JWT 是 `JSON Web Token` 缩写，详细解释请见 [JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
 
 #### 一、安装
 `yarn add jsonwebtoken`，安装好后，package.json 中添加如下依赖：
