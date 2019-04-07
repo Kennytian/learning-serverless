@@ -9,6 +9,6 @@ jspm_packages
 .webpack
 
 .idea/
-coverage/
+.coverage/
 .DS_Store
 .eslintcache
