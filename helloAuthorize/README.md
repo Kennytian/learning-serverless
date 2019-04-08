@@ -201,6 +201,7 @@ https://github.com/Kennytian/learning-serverless/tree/master/helloAuthorize
 - Serverless 入门（六）- DynamoDB 数据库（上） https://www.jianshu.com/p/c313b61d1cbf
 - Serverless 入门（七）- DynamoDB 数据库（中） https://www.jianshu.com/p/05e7f4ccd6fe
 - Serverless 入门（八）- DynamoDB 数据库（下） https://www.jianshu.com/p/0f9f1561ec46
+- Serverless 入门（九）- 权限 https://www.jianshu.com/p/97228749d761
 
 
 
