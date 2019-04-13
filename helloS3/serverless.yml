@@ -19,3 +19,29 @@ functions:
       - http:
           method: get
           path: hello
+  resize:
+    handler: src/resizer/index.handler
+    events:
+      - http:
+          method: get
+          # size 和 image 可以在 event.pathParameters 里取到
+          path: /{size}/{image}
+    environment:
+      BUCKET: dynamic-image-resizing
+      region: ap-northeast-2
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "s3:GetObject"
+        Resource: "arn:aws:s3:::dynamic-image-resizing/*"
+      - Effect: "Allow"
+        Action:
+          - "s3:PutObject"
+        Resource: "arn:aws:s3:::dynamic-image-resizing/*"
+
+package:
+  exclude:
+    - layer/**
+    - node_modules/**
+    - '!node_modules/babel-runtime/**'
+    - '!node_modules/sharp/**'
