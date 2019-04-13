@@ -5,19 +5,22 @@
   "main": "handler.js",
   "scripts": {
     "deploy-online": "serverless deploy -v",
-    "deploy-debug": "SLS_DEBUG=t STAGE=test serverless deploy",
+    "deploy-debug": "SLS_DEBUG=* STAGE=test serverless deploy",
     "deploy-offline": "serverless offline --useSeparateProcesses",
     "invoke-local": "serverless invoke local -f hello",
     "lint": "node_modules/.bin/eslint --ext .ts ./ --fix --cache",
     "test": "node_modules/.bin/jest --coverage -u"
   },
   "dependencies": {
+    "aws-sdk": "^2.437.0",
+    "sharp": "^0.22.0",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.4",
+    "@types/sharp": "^0.22.1",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "eslint": "^5.15.3",
