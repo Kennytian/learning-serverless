@@ -13,7 +13,7 @@
     "test": "node_modules/.bin/jest --coverage -u"
   },
   "dependencies": {
-    "aws-sdk": "^2.437.0",
+    "aws-sdk": "^2.814.0",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
