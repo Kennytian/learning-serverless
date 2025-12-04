@@ -1104,10 +1104,10 @@ buffer-crc32@^0.2.1:
   resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
   integrity sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
 
-buffer-equal-constant-time@1.0.1:
+buffer-equal-constant-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
-  integrity sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
+  integrity sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==
 
 buffer-fill@^1.0.0:
   version "1.0.0"
@@ -3174,21 +3174,21 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jwa@^1.2.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.0.tgz#8f61dc799acf0309f2d4b22a91ce73d6d2bb206c"
-  integrity sha512-mt6IHaq0ZZWDBspg0Pheu3r9sVNMEZn+GJe1zcdYyhFcDSclp3J8xEdO4PjZolZ2i8xlaVU1LetHM0nJejYsEw==
+jwa@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.2.tgz#16011ac6db48de7b102777e57897901520eec7b9"
+  integrity sha512-eeH5JO+21J78qMvTIDdBXidBd6nG2kZjg5Ohz/1fpa28Z4CcsWUzJ1ZZyFq/3z3N17aZy+ZuBoHljASbL1WfOw==
   dependencies:
-    buffer-equal-constant-time "1.0.1"
+    buffer-equal-constant-time "^1.0.1"
     ecdsa-sig-formatter "1.0.11"
     safe-buffer "^5.0.1"
 
 jws@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.1.tgz#d79d4216a62c9afa0a3d5e8b5356d75abdeb2be5"
-  integrity sha512-bGA2omSrFUkd72dhh05bIAN832znP4wOU3lfuXtRBuGTbsmNmDXMQg28f0Vsxaxgk4myF5YkKQpz6qeRpMgX9g==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.3.tgz#5ac0690b460900a27265de24520526853c0b8ca1"
+  integrity sha512-byiJ0FLRdLdSVSReO/U4E7RoEyOCKnEnEPMjq3HxWtvzLsV08/i5RQKsFVNkCldrCaPr2vDNAOMsfs8T/Hze7g==
   dependencies:
-    jwa "^1.2.0"
+    jwa "^1.4.2"
     safe-buffer "^5.0.1"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
